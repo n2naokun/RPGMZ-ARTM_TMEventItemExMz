@@ -7,6 +7,7 @@
 // [Version]
 // 1.0.0 初版
 // 1.0.1 アイテム選択拡張時のキャンセルボタン位置を調整
+// 1.0.2 タッチUI無効化時にエラーが出る問題を修正
 //=============================================================================
 // TMPlugin - アイテム選択拡張
 // バージョン: 1.1.0
@@ -309,26 +310,29 @@ Imported.TMEventItemEx = true;
     const _Window_EventItem_placeCancelButton = Window_EventItem.prototype.placeCancelButton;
     Window_EventItem.prototype.placeCancelButton = function() {
         _Window_EventItem_placeCancelButton.call(this);
-        const spacing = 8;
-        switch (TMPlugin.EventItemEx.FixPlacement) {
-            case "top":
-                this.copyCancelButton();
-                this._cancelButtonGbl.y = this.y + this.height;
-                this._cancelButtonGbl.y += spacing;
-                SceneManager._scene.addChild(this._cancelButtonGbl);
-                break;
-            case "bottom":
-                const height = this._cancelButtonGbl.height;
-                this.copyCancelButton();
-                if (this.isHelpWindowEnabled()) 
-                {
-                    this._cancelButtonGbl.y = this._helpWindow.y - height;
-                } else {
-                    this._cancelButtonGbl.y = this.y - height;
-                }
-                this._cancelButtonGbl.y -= spacing;
-                SceneManager._scene.addChild(this._cancelButtonGbl);
+        // 2022/07/07 タッチUI無効化時のエラーを修正
+        if (this._cancelButtonGbl && this._cancelButton) {
+            const spacing = 8;
+            switch (TMPlugin.EventItemEx.FixPlacement) {
+                case "top":
+                    this.copyCancelButton();
+                    this._cancelButtonGbl.y = this.y + this.height;
+                    this._cancelButtonGbl.y += spacing;
+                    SceneManager._scene.addChild(this._cancelButtonGbl);
+                    break;
+                case "bottom":
+                    const height = this._cancelButtonGbl.height;
+                    this.copyCancelButton();
+                    if (this.isHelpWindowEnabled()) {
+                        this._cancelButtonGbl.y = this._helpWindow.y - height;
+                    } else {
+                        this._cancelButtonGbl.y = this.y - height;
+                    }
+                    this._cancelButtonGbl.y -= spacing;
+                    SceneManager._scene.addChild(this._cancelButtonGbl);
+            }
         }
+        // 2022/07/07 タッチUI無効化時のエラーを修正 ここまで
     };
 
     Window_EventItem.prototype.copyCancelButton = function() {
