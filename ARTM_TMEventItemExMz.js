@@ -7,7 +7,7 @@
 // [Version]
 // 1.0.0 初版
 // 1.0.1 アイテム選択拡張時のキャンセルボタン位置を調整
-// 1.0.2 タッチUI無効化時にエラーが出る問題を修正
+// 1.0.2 タッチUI無効化時にエラーが出る問題を修正 修正者:@n2naokun
 //=============================================================================
 // TMPlugin - アイテム選択拡張
 // バージョン: 1.1.0
@@ -28,6 +28,12 @@
  * @help ARTM_TMEventItemExMz
  * tomoaky様作「アイテム選択拡張 ver1.1.0」プラグインのMZ移植版です。
  * 基本的な動作は変わっておりません。
+ * 
+ * Artemis様がGitHubにて公開されていたものの不具合を修正したバージョンです。
+ * このファイルの配布元リポジトリ
+ * https://github.com/n2naokun/RPGMZ-ARTM_TMEventItemExMz/blob/main/ARTM_TMEventItemExMz.js
+ * 直リンク
+ * https://raw.githubusercontent.com/n2naokun/RPGMZ-ARTM_TMEventItemExMz/main/ARTM_TMEventItemExMz.js
  *
  * 【使い方】
  *   アイテムタイプごとに以下の設定を変更できます。
